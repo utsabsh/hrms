@@ -1,6 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 function Login() {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handlesubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:3000/auth/adminlogin", values)
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <section className="h-screen flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-14 items-center my-2 mx-5 md:mx-0 md:my-0 ">
       <div className="md:w-1/3 max-w-sm">
@@ -16,17 +30,21 @@ function Login() {
             Login to infotech hrms
           </h1>
         </div>
-        <form className="flex flex-col ">
+        <form className="flex flex-col " onSubmit={handlesubmit}>
           <input
             className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
             type="email"
+            autoComplete="off"
             name="email"
             placeholder="Email Address"
+            onChange={(e) => setValues({ ...values, email: e.target.value })}
           />
           <input
             className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
             type="password"
-            placeholder="Password"
+            name="password"
+            placeholder="Enter Password"
+            onChange={(e) => setValues({ ...values, password: e.target.value })}
           />
           <div className="mb-1 mt-2">
             <input type="checkbox" name="tick" id="tick" className="me-2" />
