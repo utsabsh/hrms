@@ -17,7 +17,7 @@ router.post("/adminlogin", (req, res) => {
       res.cookie("token", token);
       return res.json({ loginStatus: true });
     } else {
-      return res.json({ loginStatus: false, Error: "wrong email or password" });
+      return res.json({ loginStatus: false, Error: "Wrong email or password" });
     }
   });
 });
