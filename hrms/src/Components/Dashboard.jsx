@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link, Outlet } from "react-router-dom";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { IoPeople } from "react-icons/io5";
@@ -42,47 +42,46 @@ const Dashboard = () => {
         </div>
         <div>
           <div className="mt-4">
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ">
+            <Link to="/dashboard" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
               <BsSpeedometer2 color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Dashboard
               </span>
-            </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ">
+            </Link>
+            <Link to="/dashboard/employee" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
               <IoPeople color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Manage employee
               </span>
-            </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ">
+            </Link>
+            <Link to="/dashboard/category" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
               <BiCategoryAlt color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Category
               </span>
-            </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ">
+            </Link>
+            <Link to="/dashboard/attandence" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
               <CiCalendarDate color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Attendance
               </span>
-            </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ">
+            </Link>
+            <Link to="/dashboard/profile" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
               <BsSpeedometer2 color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Profile
               </span>
-            </li>
-            <li className="flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 ">
-              <CiLogout color="white" size={25} />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                logout
-              </span>
-            </li>
+            </Link>
+            
           </div>
         </div>
       </div>
-      <div className="h-screen flex-1 p-7">
-        <h1 className="text-2xl font-semibold">Home Page</h1>
+      <div className="w-full">
+      <div className="p-2 w-[100%] flex justify-center shadow">
+          <h4 className="text-xl">Employee Management System</h4>
+      </div>
+
+        <Outlet></Outlet>
       </div>
     </div>
   );
