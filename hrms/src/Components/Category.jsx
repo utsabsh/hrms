@@ -20,7 +20,7 @@ const Category = () => {
     <div className='flex justify-center'>
         <h3 className="text-xl">Category List</h3>
     </div>
-    <a href="/dashboard/add_category" className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Add Category</a>
+    <Link to="/dashboard/add_category" className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Add Category</Link>
     <div className='mt-3'>
         <table className='table-auto'>
             <thead>
