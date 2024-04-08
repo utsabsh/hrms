@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link, Outlet, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import React, { useEffect } from 'react'
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { IoPeople } from "react-icons/io5";
@@ -10,18 +10,17 @@ import { CiLogout } from "react-icons/ci";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(true);
-  const navigate = useNavigate()
-  axios.defaults.withCredentials = true
+  const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
   const handleLogout = () => {
-    axios.get('http://localhost:3000/auth/logout')
-    .then(result => {
-      if(result.data.Status) { 
-        localStorage.removeItem("valid")
-        navigate('/')
+    axios.get("http://localhost:3000/auth/logout").then((result) => {
+      if (result.data.Status) {
+        localStorage.removeItem("valid");
+        navigate("/");
       }
-    })
-  }
-  
+    });
+  };
+
   return (
     <div className="flex">
       <div
@@ -55,50 +54,59 @@ const Dashboard = () => {
         </div>
         <div>
           <div className="mt-4">
-            <Link to="/dashboard" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
+            <Link
+              to="/dashboard"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+            >
               <BsSpeedometer2 color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Dashboard
               </span>
             </Link>
-            <Link to="/dashboard/employee" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
+            <Link
+              to="/dashboard/employee"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+            >
               <IoPeople color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Manage employee
               </span>
             </Link>
-            <Link to="/dashboard/category" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
+            <Link
+              to="/dashboard/category"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+            >
               <BiCategoryAlt color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Category
               </span>
             </Link>
-            <Link to="/dashboard/attandence" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
+            <Link
+              to="/dashboard/attandence"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+            >
               <CiCalendarDate color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Attendance
               </span>
             </Link>
-            <Link to="/dashboard/profile" className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
-              <BsSpeedometer2 color="white" size={25} />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                Profile
-              </span>
-            </Link>
-            <li onClick={handleLogout} className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4">
+
+            <li
+              onClick={handleLogout}
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+            >
               <CiLogout color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Logout
               </span>
             </li>
-            
           </div>
         </div>
       </div>
       <div className="w-full">
-      <div className="p-2 w-[100%] flex justify-center shadow">
+        <div className="p-2 w-[100%] flex justify-center shadow">
           <h4 className="text-xl">Employee Management System</h4>
-      </div>
+        </div>
 
         <Outlet></Outlet>
       </div>
