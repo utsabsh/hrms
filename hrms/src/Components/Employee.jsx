@@ -54,7 +54,11 @@ const Employee = () => {
           <tbody>
             {employee.map((e) => (
               <tr key={e.id}>
-                <td className="border px-4 py-2">{e.name}</td>
+                <td className="border px-4 py-2"><img
+                    src={`http://localhost:3000/Images/${e.image}`}
+                    alt={e.name}
+                    className="w-15 h-10"
+                  />{e.name} </td>
                 <td className="border px-4 py-2">
                   <img
                     src={`http://localhost:3000/Images/${e.image}`}

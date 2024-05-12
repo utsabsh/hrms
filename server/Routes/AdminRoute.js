@@ -163,6 +163,52 @@ router.delete('/delete_employee/:id', (req, res) => {
         return res.json({Status: true, Result: result})
     })
 })
+// Update the status of a leave request
+router.put("/update_leave/:id", (req, res) => {
+    const id = req.params.id;
+    const { status } = req.body;
+  
+    const sql = `UPDATE leave_records SET status = ? WHERE id = ?`;
+    const values = [status, id];
+  
+    con.query(sql, values, (err, result) => {
+      if (err) {
+        console.error("Error executing SQL query:", err);
+        return res.status(500).json({ status: false, error: "Database error" });
+      }
+  
+      if (result.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ status: false, error: "Leave request not found" });
+      }
+  
+      return res.json({ status: true });
+    });
+  });
+  
+  router.put("/Accept/:id", (req, res) => {
+    const id = req.params.id;
+    const sql = `UPDATE leave 
+    set status = ?
+    Where id = ?`;
+    const values = ["Accept"];
+    con.query(sql, [id], (err, result) => {
+      if (err) return res.json({ Status: false, Error: "Query Error" + err });
+      return res.json({ Status: true, Result: result });
+    });
+  });
+  router.put("/decline/:id", (req, res) => {
+    const id = req.params.id;
+    const sql = `UPDATE leave 
+    set status = ?
+    Where id = ?`;
+    const values = ["Decline"];
+    con.query(sql, [id], (err, result) => {
+      if (err) return res.json({ Status: false, Error: "Query Error" + err });
+      return res.json({ Status: true, Result: result });
+    });
+  });
 
 router.get('/admin_count', (req, res) => {
     const sql = "select count(id) as admin from admin";
