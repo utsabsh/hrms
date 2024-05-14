@@ -7,6 +7,10 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { IoPeople } from "react-icons/io5";
 import { CiCalendarDate } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
+import { IoReorderThree } from "react-icons/io5";
+import { TbZoomMoney } from "react-icons/tb";
+import { FaCalendarTimes } from "react-icons/fa";
+import logo from "../assets/logo.png";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(true);
@@ -28,16 +32,9 @@ const Dashboard = () => {
           open ? "w-72" : "w-20 "
         } h-screen p-5  pt-8 relative duration-300 bg-purple-700`}
       >
-        <img
-          src="./src/assets/control.png"
-          className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
-           border-2 rounded-full  ${!open && "rotate-180"}`}
-          onClick={() => setOpen(!open)}
-          alt="Toggle Button"
-        />
         <div className="flex gap-x-4 items-center">
           <img
-            src="./src/assets/logo.png"
+            src={logo}
             className={`cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
             }`}
@@ -49,14 +46,14 @@ const Dashboard = () => {
               !open && "scale-0"
             }`}
           >
-            Infotech
+            Innovate Nepal
           </h1>
         </div>
         <div>
           <div className="mt-4">
             <Link
               to="/dashboard"
-              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
               <BsSpeedometer2 color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
@@ -65,7 +62,7 @@ const Dashboard = () => {
             </Link>
             <Link
               to="/dashboard/employee"
-              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white hover:bg-purple-500  text-gray-300 text-sm items-center gap-x-4"
             >
               <IoPeople color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
@@ -74,26 +71,44 @@ const Dashboard = () => {
             </Link>
             <Link
               to="/dashboard/category"
-              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
               <BiCategoryAlt color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
-                Category
+                Department
               </span>
             </Link>
             <Link
               to="/dashboard/attandence"
-              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
               <CiCalendarDate color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Attendance
               </span>
             </Link>
+            <Link
+              to="/dashboard/salary"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
+            >
+              <TbZoomMoney color="white" size={25} />
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                Payroll
+              </span>
+            </Link>
+            <Link
+              to="/dashboard/leave"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
+            >
+              <FaCalendarTimes color="white" size={25} />
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                Leave
+              </span>
+            </Link>
 
             <li
               onClick={handleLogout}
-              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
               <CiLogout color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
