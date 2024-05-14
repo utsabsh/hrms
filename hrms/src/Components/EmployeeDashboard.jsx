@@ -1,28 +1,31 @@
 import { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect } from "react";
-import { BsSpeedometer2 } from "react-icons/bs";
-import { BiCategoryAlt } from "react-icons/bi";
-import { IoPeople } from "react-icons/io5";
+import { MdContactMail } from "react-icons/md";
+import { IoReorderThree } from "react-icons/io5";
+import { IoMdContact } from "react-icons/io";
 import { CiCalendarDate } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
-import { IoReorderThree } from "react-icons/io5";
 import { TbZoomMoney } from "react-icons/tb";
 import { FaCalendarTimes } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
-const Dashboard = () => {
+const EmployeeDashboard = () => {
+  const { id } = useParams();
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   const handleLogout = () => {
-    axios.get("http://localhost:3000/auth/logout").then((result) => {
-      if (result.data.Status) {
-        localStorage.removeItem("valid");
-        navigate("/");
-      }
-    });
+    axios
+      .get("http://localhost:3000/employee/logout")
+      .then((result) => {
+        if (result.data.Status) {
+          localStorage.removeItem("valid");
+          navigate("/");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -51,44 +54,35 @@ const Dashboard = () => {
         </div>
         <div>
           <div className="mt-4">
-            <Link
-              to="/dashboard"
-              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
+            {/* <Link
+              to="/employee_dashboard"
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4"
             >
               <BsSpeedometer2 color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Dashboard
-              </span>
-            </Link>
+                </span>
+              </Link> */}
             <Link
-              to="/dashboard/employee"
-              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white hover:bg-purple-500  text-gray-300 text-sm items-center gap-x-4"
-            >
-              <IoPeople color="white" size={25} />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                Manage employee
-              </span>
-            </Link>
-            <Link
-              to="/dashboard/category"
+              to={"/employee_dashboard/employee_detail/" + id}
               className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
-              <BiCategoryAlt color="white" size={25} />
+              <IoMdContact color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
-                Department
+                Profile
               </span>
             </Link>
             <Link
-              to="/dashboard/attandence"
+              to={"/employee_dashboard/contact/" + id}
               className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
-              <CiCalendarDate color="white" size={25} />
+              <MdContactMail color="white" size={25} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
-                Attendance
+                Employee
               </span>
             </Link>
             <Link
-              to="/dashboard/salary"
+              to={"/employee_dashboard/salary/" + id}
               className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
               <TbZoomMoney color="white" size={25} />
@@ -97,7 +91,16 @@ const Dashboard = () => {
               </span>
             </Link>
             <Link
-              to="/dashboard/leave"
+              to={"/employee_dashboard/attendance/" + id}
+              className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
+            >
+              <CiCalendarDate color="white" size={25} />
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                Attendance
+              </span>
+            </Link>
+            <Link
+              to={"/employee_dashboard/leave/" + id}
               className="flex rounded-md p-2 cursor-pointer hover:bg-light-white  hover:bg-purple-500 text-gray-300 text-sm items-center gap-x-4"
             >
               <FaCalendarTimes color="white" size={25} />
@@ -129,4 +132,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default EmployeeDashboard;
